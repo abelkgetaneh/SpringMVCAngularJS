@@ -2,13 +2,15 @@
 
 angular.module('bookApp').controller('BookController', ['$scope','BookService', function($scope, BookService){
 	
-	this.book = {id:null, title: '', author: ''};
-	this.books = [];
+	var vm = this;
 	
-	this.submit = submit;
-	this.edit = edit;
-	this.remove = remove;
-	this.reset = reset;
+	vm.book = {id:null, title: '', author: ''};
+	vm.books = [];
+	
+	vm.submit = submit;
+	vm.edit = edit;
+	vm.remove = remove;
+	vm.reset = reset;
 	
 	getAllBooks();
 	
@@ -16,7 +18,7 @@ angular.module('bookApp').controller('BookController', ['$scope','BookService', 
 		BookService.getAllBooks()
 			.then(
 			function(d){
-				this.books = d;
+				vm.books = d;
 			},
 			function(errResponse){
 				console.error('Error while fetching books');
@@ -51,34 +53,34 @@ angular.module('bookApp').controller('BookController', ['$scope','BookService', 
 		);
 	};
 	function submit(){
-		if(this.book.id === null){
-			console.log('Saving New Book', this.book);
-			createBook(this.book);
+		if(vm.book.id === null){
+			console.log('Saving New Book', vm.book);
+			createBook(vm.book);
 		}else{
-			udpateBook(this.book, this.book.id);
-			console.log('Book updated with id ', this.book.id);
+			udpateBook(vm.book, vm.book.id);
+			console.log('Book updated with id ', vm.book.id);
 		}
 		reset();
 	}
 	function edit(id){
 		console.log('id to be edited', id);
-		for(var i=0; i < this.books.length; i++){
-			if(this.books[i].id === id){
-				this.book = angular.copy(this.books[id]);
+		for(var i=0; i < vm.books.length; i++){
+			if(vm.books[i].id === id){
+				vm.book = angular.copy(vm.books[id]);
 				break;
 			}
 		}
 	}
 	function remove(id){
 		console.log('id to be edited', id);
-		if(this.book.id === id){
+		if(vm.book.id === id){
 			reset();
 		}
 			deleteBook(id);
 	}
 	
 	function reset(){
-		this.book = {id: null, title: '', author: ''};
+		vm.book = {id: null, title: '', author: ''};
 		$scope.myForm.$setPristine();
 	}
 }]);

@@ -5,8 +5,11 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
 
+import org.springframework.stereotype.Service;
+
 import com.abelkbde.SpringMVCAngularJSProject.model.Book;
 
+@Service("bookService")
 public class BookServiceImpl implements BookService{
 
 	private static final AtomicLong counter = new AtomicLong();
