@@ -3,6 +3,7 @@ package com.abelkbde.SpringMVCAngularJSProject.service;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicLong;
 
 import org.springframework.stereotype.Service;
@@ -12,7 +13,7 @@ import com.abelkbde.SpringMVCAngularJSProject.model.Book;
 @Service("bookService")
 public class BookServiceImpl implements BookService{
 
-	private static final AtomicLong counter = new AtomicLong();
+	private static final AtomicInteger counter = new AtomicInteger();
 	
 	private static List<Book> books;
 	

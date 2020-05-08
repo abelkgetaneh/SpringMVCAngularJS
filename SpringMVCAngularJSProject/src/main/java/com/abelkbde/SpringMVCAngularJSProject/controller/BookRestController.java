@@ -105,7 +105,7 @@ public class BookRestController {
 	
 	//--------------------Delete All Users----------------------------------------------------
 	@RequestMapping(value = "/book/", method = RequestMethod.DELETE)
-	public ResponseEntity<Book> deleteAllUsers(){
+	public ResponseEntity<Book> deleteAllBooks(){
 		System.out.println("Deleting all books");
 		
 		bookService.deleteAllBooks();
