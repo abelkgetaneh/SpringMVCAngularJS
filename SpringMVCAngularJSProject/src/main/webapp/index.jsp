@@ -86,7 +86,7 @@
                               <td><span data-ng-bind="b.title"></span></td>
                               <td><span data-ng-bind="b.author"></span></td>
                               <td>
-                              <button type="button" data-ng-click="ctrl.edit(b.id)" class="btn btn-success custom-width">Edit</button>  <button type="button" data-ng-click="ctrl.remove(b.id)" class="btn btn-danger custom-width">Remove</button>
+                              <button type="button" data-ng-click="ctrl.edit(b)" class="btn btn-success custom-width">Edit</button>  <button type="button" data-ng-click="ctrl.remove(b.id)" class="btn btn-danger custom-width">Remove</button>
                               </td>
                           </tr>
                       </tbody>

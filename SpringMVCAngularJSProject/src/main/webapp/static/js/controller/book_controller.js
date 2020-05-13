@@ -25,8 +25,8 @@ angular.module('myBookApp').controller('BookController', ['$scope','BookService'
 			}			
 		);
 	}
-	function createBook(book){
-		BookService.createBook(book)
+	function createBook(){
+		BookService.createBook(vm.book)
 		.then(
 				getAllBooks,
 				function(errResponse){
@@ -34,8 +34,8 @@ angular.module('myBookApp').controller('BookController', ['$scope','BookService'
 				}			
 		);
 	}
-	function updateBook(book, id){
-		BookService.updateBook(book, id)
+	function updateBook(){
+		BookService.updateBook(vm.book, vm.book.id)
 		.then(
 				getAllBooks,
 				function(errResponse){
@@ -55,21 +55,17 @@ angular.module('myBookApp').controller('BookController', ['$scope','BookService'
 	function submit(){
 		if(vm.book.id === null){
 			console.log('Saving New Book', vm.book);
-			createBook(vm.book);
+			createBook();
 		}else{
-			udpateBook(vm.book, vm.book.id);
+			updateBook();
 			console.log('Book updated with id ', vm.book.id);
 		}
 		reset();
 	}
-	function edit(id){
-		console.log('Book.id to be edited', id);
-		for(var i=0; i < vm.books.length; i++){
-			if(vm.books[i].id === id){
-				vm.book = angular.copy(vm.books[id]);
-				break;
-			}
-		}
+	function edit(book){
+		console.log('Book.id to be edited', book.id);
+		vm.book = angular.copy(book);
+		
 	}
 	function remove(id){
 		console.log('Book.id to be edited', id);
