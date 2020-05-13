@@ -19,7 +19,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 import com.abelkbde.SpringMVCAngularJSProject.model.Book;
 import com.abelkbde.SpringMVCAngularJSProject.service.BookService;
 
-@RestController
+@RestController(value = "/book")
 public class BookRestController {
 
 	
@@ -31,7 +31,7 @@ public class BookRestController {
 	
 	//-------------------------Fetch All Books---------------------------
 	
-	@RequestMapping(value = "/book/", method = RequestMethod.GET)
+	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public ResponseEntity<List<Book>> listAllBooks(){
 		LOGGER.info("Fetching all books");
 		List<Book> books = bookService.findAllBooks();
@@ -43,7 +43,7 @@ public class BookRestController {
 	
 	//----------------------Fetch Single Book--------------------------------------------------------------------
 	
-	@RequestMapping(value = "/book/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Book> getBook(@PathVariable("id") Integer id){
 		LOGGER.info("Fetching book with id" + id);
 		Book book = bookService.findBookById(id);
@@ -55,7 +55,7 @@ public class BookRestController {
 	}
 	
 	//--------------------------Create a Book--------------------------------------------------
-	@RequestMapping(value = "/book/", method = RequestMethod.POST)
+	@RequestMapping(value = "/", method = RequestMethod.POST)
 	public ResponseEntity<Void> createBook(@RequestBody Book book, UriComponentsBuilder ucBuilder){
 		LOGGER.info("Creating Book " + book.getTitle());
 		if(bookService.isBookExist(book)) {
@@ -70,7 +70,7 @@ public class BookRestController {
 	}
 	
 	//----------------------Update a Book---------------------------------------------------------
-	@RequestMapping(value = "/book/{id}", method = RequestMethod.PUT)
+	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
 	public ResponseEntity<Book> updateBook(@PathVariable("id") Integer id, @RequestBody Book book){
 		LOGGER.info("Updating User " + id);
 		Book currentBook= bookService.findBookById(id);
@@ -91,7 +91,7 @@ public class BookRestController {
 	}
 	
 	//---------------------Delete a Book------------------------------------------------------
-	@RequestMapping(value = "/book/{id}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	public ResponseEntity<Book> deleteBookById(@PathVariable("id") Integer id){
 		LOGGER.info("Fetching and deleting a book with id " + id);
 		Book currentBook= bookService.findBookById(id);
@@ -104,7 +104,7 @@ public class BookRestController {
 	}
 	
 	//--------------------Delete All Books----------------------------------------------------
-	@RequestMapping(value = "/book/", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/", method = RequestMethod.DELETE)
 	public ResponseEntity<Book> deleteAllBooks(){
 		LOGGER.info("Deleting all books");
 		bookService.deleteAllBooks();
