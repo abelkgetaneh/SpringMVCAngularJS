@@ -1,4 +1,4 @@
 
 'use strict';
 
-var bookApp = angular.module('bookApp', []);
+var bookApp = angular.module('myBookApp', []);

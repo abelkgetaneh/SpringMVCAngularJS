@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('bookApp').factory('BookService', ['$http', '$q', function($http, $q){
+angular.module('myBookApp').factory('BookService', ['$http', '$q', function($http, $q){
 
-    var REST_SERVICE_URI = 'http://localhost:8084/SpringMVCAngularJSProject/book';
+    var REST_SERVICE_URI = 'http://localhost:8084/SpringMVCAngularJSProject/book/';
 
     var factory = {
         getAllBooks: getAllBooks,
@@ -46,7 +46,7 @@ angular.module('bookApp').factory('BookService', ['$http', '$q', function($http,
 
     function updateBook(book, id) {
         var deferred = $q.defer();
-        $http.put(REST_SERVICE_URI+id, book)
+        $http.put(REST_SERVICE_URI+ id, book)
             .then(
             function (response) {
                 deferred.resolve(response.data);

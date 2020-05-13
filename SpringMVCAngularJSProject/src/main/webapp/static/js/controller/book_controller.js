@@ -1,10 +1,10 @@
 'use strict';
 
-angular.module('bookApp').controller('BookController', ['$scope','BookService', function($scope, BookService){
+angular.module('myBookApp').controller('BookController', ['$scope','BookService', function($scope, BookService){
 	
 	var vm = this;
 	
-	vm.book = {id:null, title: '', author: ''};
+	vm.book = {id:null, title: null, author: null};
 	vm.books = [];
 	
 	vm.submit = submit;
@@ -24,7 +24,7 @@ angular.module('bookApp').controller('BookController', ['$scope','BookService', 
 				console.error('Error while fetching books');
 			}			
 		);
-	};
+	}
 	function createBook(book){
 		BookService.createBook(book)
 		.then(
@@ -33,25 +33,25 @@ angular.module('bookApp').controller('BookController', ['$scope','BookService', 
 					console.error('Error while creating book');
 				}			
 		);
-	};
+	}
 	function updateBook(book, id){
-		BookService.updateBook()
+		BookService.updateBook(book, id)
 		.then(
 				getAllBooks,
 				function(errResponse){
 					console.error('Error while updating book');
 				}			
 		);
-	};
-	function deleteBook(){
-		BookService.deleteBook()
+	}
+	function deleteBook(id){
+		BookService.deleteBook(id)
 		.then(
 				getAllBooks,
 				function(errResponse){
 					console.error('Error while deleting book');
 				}			
 		);
-	};
+	}
 	function submit(){
 		if(vm.book.id === null){
 			console.log('Saving New Book', vm.book);
@@ -63,7 +63,7 @@ angular.module('bookApp').controller('BookController', ['$scope','BookService', 
 		reset();
 	}
 	function edit(id){
-		console.log('id to be edited', id);
+		console.log('Book.id to be edited', id);
 		for(var i=0; i < vm.books.length; i++){
 			if(vm.books[i].id === id){
 				vm.book = angular.copy(vm.books[id]);
@@ -72,7 +72,7 @@ angular.module('bookApp').controller('BookController', ['$scope','BookService', 
 		}
 	}
 	function remove(id){
-		console.log('id to be edited', id);
+		console.log('Book.id to be edited', id);
 		if(vm.book.id === id){
 			reset();
 		}
@@ -80,7 +80,7 @@ angular.module('bookApp').controller('BookController', ['$scope','BookService', 
 	}
 	
 	function reset(){
-		vm.book = {id: null, title: '', author: ''};
+		vm.book = {id: null, title: null, author: null};
 		$scope.myForm.$setPristine();
 	}
 }]);

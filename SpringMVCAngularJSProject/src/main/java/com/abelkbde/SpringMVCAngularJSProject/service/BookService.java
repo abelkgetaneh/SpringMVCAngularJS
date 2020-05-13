@@ -6,21 +6,19 @@ import com.abelkbde.SpringMVCAngularJSProject.model.Book;
 
 public interface BookService {
 
-	Book findBookById(long id);
+	Book findBookById(Integer id);
     
-    Book findBookByTitle(String title);
-    
-    Book findBookByAuthor(String author);
+    Book findBookByTitle(String title);    
      
     void saveBook(Book book);
      
     void updateBook(Book book);
      
-    void deleteBookById(long id);
+    void deleteBookById(Integer id);
  
     List<Book> findAllBooks(); 
      
     void deleteAllBooks();
      
-    public boolean isBookExist(Book book);
+    boolean isBookExist(Book book);
 }

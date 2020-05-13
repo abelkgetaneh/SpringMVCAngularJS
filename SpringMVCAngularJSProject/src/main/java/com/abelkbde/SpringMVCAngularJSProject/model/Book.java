@@ -1,8 +1,7 @@
 package com.abelkbde.SpringMVCAngularJSProject.model;
 
-
 public class Book {
-	
+
 	private Integer id;
 
 	private String title;
@@ -14,7 +13,6 @@ public class Book {
 	}
 
 	public Book(Integer id, String title, String author) {
-		super();
 		this.id = id;
 		this.title = title;
 		this.author = author;
@@ -44,7 +42,6 @@ public class Book {
 		this.author = author;
 	}
 
-	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
